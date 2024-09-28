@@ -1,0 +1,15 @@
+<div class="card mb-2">
+    <div class="card-body">
+        <h5><input (click)="updateStatus()" type="checkbox" [checked]="task.status" /> {{ task.taskName }} - {{ task.dueDate | date }}</h5>
+        <p><strong>Personas asociadas:</strong></p>
+        <ul>
+            <li *ngFor="let person of task.people">
+                {{ person.fullName }} - {{ person.age }} años
+                <br />
+                <small>Habilidades: 
+                    <span *ngFor="let skill of person.skills" class="badge text-bg-primary mx-1">{{skill}}</span>
+                </small>
+            </li>
+        </ul>
+    </div>
+</div>

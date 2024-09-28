@@ -1,0 +1,25 @@
+<div [formGroup]="form" class="row">
+    <div class="col-12">
+        <h5>Habilidades:</h5>
+    </div>
+
+    <div class="col-12" formArrayName="skills">
+        <div class="row mb-2" *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+            <div class="col">
+                <div class="input-group">
+                    <input class="form-control" formControlName="skill" placeholder="Angular..." />
+                    <button class="btn btn-sm btn-outline-danger" (click)="removeSkill(i)">Eliminar</button>
+                </div>
+                <app-message-validator [name]="'skill'" [configMessages]="formFields.messages.skill"></app-message-validator>
+            </div>          
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 justify-content-end">
+    <div class="col-12 col-sm-auto">
+      <div class="d-grid">
+        <button class="btn btn-sm btn-primary" (click)="addSkill()"><i class="fa-solid fa-plus"></i> Añadir</button>
+      </div>
+    </div>
+</div>

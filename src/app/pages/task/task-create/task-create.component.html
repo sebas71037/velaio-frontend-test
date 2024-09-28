@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col">
+    <h1><i class="fa-solid fa-plus"></i> Crear nueva tarea</h1>
+  </div>
+</div>
+
+<form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <div class="row">
+      <div class="col-12 col-sm mb-2">
+        <input id="taskName" class="form-control" formControlName="taskName" placeholder="Tarea: Realizar..." />
+        <app-message-validator [name]="'taskName'" [configMessages]="formFields.messages.taskName"></app-message-validator>
+      </div>
+
+      <div class="col-12 col-sm-3">
+        <div class="input-group">
+          <input id="dueDate" class="form-control" type="text" formControlName="dueDate" ngbDatepicker #d="ngbDatepicker" placeholder="yyyy-mm-dd"  readonly />
+          <button class="btn btn-outline-primary bi bi-calendar3" (click)="d.toggle()" type="button">
+            <i class="fa-solid fa-calendar-days"></i>
+          </button>
+        </div>
+        <app-message-validator [name]="'dueDate'" [configMessages]="formFields.messages.dueDate"></app-message-validator>
+      </div>
+    </div>
+
+    <!-- Person container -->
+    <div class="row mt-4
+    ">
+      <div class="col-12">
+        <hr>
+      </div>
+      <div class="col-12">
+        <app-person></app-person>
+      </div>
+    </div>
+
+    <div class="row my-4 justify-content-center">
+      <div class="col col-md-3">
+        <div class="d-grid">
+          <button type="submit" class="btn btn-outline-primary" [disabled]="taskForm.invalid">
+            <div *ngIf="loading$ | async" class="loader spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            Guardar tarea
+          </button>
+        </div>
+      </div>
+    </div>
+</form>
+  
